@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe8df1985018b94891fa752e178820f, type: 3}
+  m_Name: DemoNPC
+  m_EditorClassIdentifier: 
+  m_name: Demo Man
+  m_firstTimeLines: {fileID: 11400000, guid: 21c928abe91f8df4299e37663db7d0dd, type: 2}
+  m_bindingMode: 4
+  m_followOffset: {x: 3.67, y: 2.46, z: 5.56}
+  m_trackedObjectOffset: {x: 0, y: 0.63, z: 0}

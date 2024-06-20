@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32ad0ed842c33c141a07b67a557344d1, type: 3}
+  m_Name: Demo_Graph
+  m_EditorClassIdentifier: 
+  NodeLinks:
+  - BaseNodeGuid: f091bfe0-6f9c-4bfa-804e-e1df52fee0ed
+    PortName: Next
+    TargetNodeGuid: c7f74aa8-4cb0-46d7-a8fa-feaa2ad64f59
+  - BaseNodeGuid: c7f74aa8-4cb0-46d7-a8fa-feaa2ad64f59
+    PortName: Hey!
+    TargetNodeGuid: 3f92b290-f6b9-4672-88ba-7f16cf221680
+  - BaseNodeGuid: 3f92b290-f6b9-4672-88ba-7f16cf221680
+    PortName: 
+    TargetNodeGuid: 0b570ade-2ea2-4ada-be78-a10a8469f28d
+  - BaseNodeGuid: c7f74aa8-4cb0-46d7-a8fa-feaa2ad64f59
+    PortName: Bye.
+    TargetNodeGuid: 19639a78-6e1d-4281-b14b-ceb979bd9d8f
+  DialogueNodeData:
+  - Guid: c7f74aa8-4cb0-46d7-a8fa-feaa2ad64f59
+    Position: {x: 226, y: 200}
+    DialogueText: Howdy!
+  - Guid: 3f92b290-f6b9-4672-88ba-7f16cf221680
+    Position: {x: 556, y: 134}
+    DialogueText: Have a good day!
+  - Guid: 19639a78-6e1d-4281-b14b-ceb979bd9d8f
+    Position: {x: 556, y: 277}
+    DialogueText: Ok...
+  UnityEventNodeData:
+  - Guid: 0b570ade-2ea2-4ada-be78-a10a8469f28d
+    Position: {x: 849, y: 134}
+    EventTitle: 0
+  ExposedProperties: []
