@@ -1,18 +1,32 @@
 {
   "name": "com.inexperienced-developer.dialogue",
   "version": "0.0.1",
-  "displayName": "Inexperienced Developer",
+  "displayName": "Inexperienced Developer Dialogue System",
   "description": "A node-based Dialogue System for Unity, expanded from the system created by Mert Kirimgeri (https://www.youtube.com/@MertKirimgeriGameDev)",
+  "keywords": [
+    "Graph",
+    "GraphView",
+    "Dialogue",
+    "Narrative",
+    "Story based"
+  ],
   "unity": "2022.3",
-  "unityRelease": "0b5",
-  "dependencies": {
-    "com.unity.cinemachine": "2.10.0",
-    "com.unity.textmeshpro": "3.0.6"
- },
- "repository": {
-  "type": "git",
-  "url": "https://github.com/inexperienced-developer/com.inexperienceddeveloper.dialogue"
- },
+  "samples": [
+  {
+    "displayName": "Sample Scene",
+    "description": "An example of using the graph in-game",
+    "path": "Sample",
+    "dependencies": {
+      "com.unity.cinemachine": "2.10.0",
+      "com.unity.textmeshpro": "3.0.6"
+    }
+  }
+  ],
+  "category": "Visual Scripting",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inexperienced-developer/com.inexperienceddeveloper.dialogue"
+  },
   "author": {
     "name": "Jacob Berman",
     "email": "contact@inexperienceddevloper.com",
