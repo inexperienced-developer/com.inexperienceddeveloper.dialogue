@@ -1,5 +1,6 @@
 # Inexperienced Developer Dialogue System
 A Node-based Dialogue System for Unity. Expanded from the system created by Mert Kirimgeri (https://www.youtube.com/@MertKirimgeriGameDev).
+https://github.com/merpheus-dev/NodeBasedDialogueSystem
 
 ## Install Directly to Unity
 _Must make sure that you have git installed_
