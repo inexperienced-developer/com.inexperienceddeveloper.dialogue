@@ -6,7 +6,7 @@ _Must make sure that you have git installed_
 * Go to Window -> Package Manager
 * Click the plus in the top left of the Package Manager Window
 * Add package from git URL
-* Paste (**CHANGE ME**)
+* Paste (https://github.com/inexperienced-developer/com.inexperienceddeveloper.dialogue.git)
 * Click Add
 
 Files can also just be downloaded and dragged into your project.
