@@ -1,0 +1,16 @@
+{
+    "name": "inexperienced-developer.dialogue.editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:52cc75e29b297c543bbe54d433721d3c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

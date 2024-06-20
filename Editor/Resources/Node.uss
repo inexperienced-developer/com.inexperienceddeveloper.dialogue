@@ -1,0 +1,13 @@
+DialogueNode #title {
+	background-color: green;
+}
+
+UnityEventNode #title {
+	background-color: purple;
+	color: orange;
+}
+
+TextField {
+	white-space: normal;
+    flex-wrap: wrap;
+}
