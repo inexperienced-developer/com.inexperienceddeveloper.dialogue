@@ -19,7 +19,7 @@
   {
     "displayName": "Sample Scene",
     "description": "An example of using the graph in-game",
-    "path": "Samples",
+    "path": "Samples~/DemoScene",
     "dependencies": {
       "com.unity.cinemachine": "2.10.0",
       "com.unity.textmeshpro": "3.0.6"
