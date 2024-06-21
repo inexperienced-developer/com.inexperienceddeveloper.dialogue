@@ -1,87 +1,91 @@
 using System;
 using UnityEngine;
 
-public class PlayerInteractor : MonoBehaviour
+namespace InexperiencedDeveloper.Dialogue.Samples
 {
-    private Player m_player;
-
-    // Static because only one interaction will happen at a time -- also eases the unsubscription
-    // No need to go crazy here
-    public static event Action<IInteractable> CanInteract;
-    public static event Action<IInteractable, EActiveCamera> Interaction;
-    public static event Action EndInteraction;
-
-    [Tooltip("Range the raycast shoots")]
-    [SerializeField] private float m_interactRange = 1;
-    [Tooltip("The height of the head of the player")]
-    [SerializeField] private float m_interactYOffset = 0.75f;
-    [SerializeField] private LayerMask m_interactableLayer;
-
-    private IInteractable m_targetInteractable;
-
-    private bool m_isInteracting => m_player.StateMachine.CurrentState == EPlayerState.INTERACT;
-
-    public void Init(Player player)
+    public class PlayerInteractor : MonoBehaviour
     {
-        m_player = player;
-    }
+        private Player m_player;
 
-    private void Update()
-    {
-        CheckInteract();
-        if (m_targetInteractable == null) return;
-        if (Input.GetKeyDown(KeyCode.E))
+        // Static because only one interaction will happen at a time -- also eases the unsubscription
+        // No need to go crazy here
+        public static event Action<IInteractable> CanInteract;
+        public static event Action<IInteractable, EActiveCamera> Interaction;
+        public static event Action EndInteraction;
+
+        [Tooltip("Range the raycast shoots")]
+        [SerializeField] private float m_interactRange = 1;
+        [Tooltip("The height of the head of the player")]
+        [SerializeField] private float m_interactYOffset = 0.75f;
+        [SerializeField] private LayerMask m_interactableLayer;
+
+        private IInteractable m_targetInteractable;
+
+        private bool m_isInteracting => m_player.StateMachine.CurrentState == EPlayerState.INTERACT;
+
+        public void Init(Player player)
         {
-            NPC npc = m_targetInteractable as NPC;
-            if (!m_isInteracting) Interact();
-            else if (npc == null && m_isInteracting) EndInteract();
+            m_player = player;
         }
-    }
 
-    private void CheckInteract()
-    {
-        if (m_isInteracting) return;
-        Vector3 interactHeight = transform.position;
-        interactHeight.y += m_interactYOffset;
-        // Shoot raycast checking for interactables in front of us
-        if (Physics.Raycast(interactHeight, transform.forward, out RaycastHit hit, m_interactRange, m_interactableLayer, QueryTriggerInteraction.Collide))
+        private void Update()
         {
-            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
-            if (interactable != m_targetInteractable)
+            CheckInteract();
+            if (m_targetInteractable == null) return;
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                m_targetInteractable = interactable;
-                CanInteract?.Invoke(m_targetInteractable);
+                NPC npc = m_targetInteractable as NPC;
+                if (!m_isInteracting) Interact();
+                else if (npc == null && m_isInteracting) EndInteract();
             }
         }
-        else
+
+        private void CheckInteract()
         {
-            if (m_targetInteractable != null)
+            if (m_isInteracting) return;
+            Vector3 interactHeight = transform.position;
+            interactHeight.y += m_interactYOffset;
+            // Shoot raycast checking for interactables in front of us
+            if (Physics.Raycast(interactHeight, transform.forward, out RaycastHit hit, m_interactRange, m_interactableLayer, QueryTriggerInteraction.Collide))
             {
-                m_targetInteractable = null;
-                CanInteract?.Invoke(m_targetInteractable);
+                IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+                if (interactable != m_targetInteractable)
+                {
+                    m_targetInteractable = interactable;
+                    CanInteract?.Invoke(m_targetInteractable);
+                }
+            }
+            else
+            {
+                if (m_targetInteractable != null)
+                {
+                    m_targetInteractable = null;
+                    CanInteract?.Invoke(m_targetInteractable);
+                }
             }
         }
-    }
 
-    private void Interact()
-    {
-        m_targetInteractable.Interact();
-        Interaction?.Invoke(m_targetInteractable, GetCameraToTurnOn(m_targetInteractable));
-    }
-
-    public void EndInteract()
-    {
-        EndInteraction?.Invoke();
-        m_player.StateMachine.NextState(EPlayerState.MOVEMENT);
-    }
-
-    private EActiveCamera GetCameraToTurnOn(IInteractable interactable)
-    {
-        return interactable switch
+        private void Interact()
         {
-            NPC => EActiveCamera.NPC,
-            _ => EActiveCamera.PLAYER
-        };
+            m_targetInteractable.Interact();
+            Interaction?.Invoke(m_targetInteractable, GetCameraToTurnOn(m_targetInteractable));
+        }
+
+        public void EndInteract()
+        {
+            EndInteraction?.Invoke();
+            m_player.StateMachine.NextState(EPlayerState.MOVEMENT);
+        }
+
+        private EActiveCamera GetCameraToTurnOn(IInteractable interactable)
+        {
+            return interactable switch
+            {
+                NPC => EActiveCamera.NPC,
+                _ => EActiveCamera.PLAYER
+            };
+        }
     }
 }
+
 

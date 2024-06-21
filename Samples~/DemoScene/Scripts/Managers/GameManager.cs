@@ -1,6 +1,8 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace InexperiencedDeveloper.Dialogue.Samples
+{
+    public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public PlayerManager PlayerManager { get; private set; }
@@ -18,5 +20,6 @@ public class GameManager : MonoBehaviour
     {
         PlayerManager?.CleanUp();
     }
+}
 }
 

@@ -1,15 +1,18 @@
 using System;
 
-[Serializable]
-public abstract class BasePlayerState
+namespace InexperiencedDeveloper.Dialogue.Samples
 {
-    protected PlayerStateMachine m_stateMachine;
-
-    public virtual void OnEnter(PlayerStateMachine stateMachine)
+    [Serializable]
+    public abstract class BasePlayerState
     {
-        m_stateMachine = stateMachine;
+        protected PlayerStateMachine m_stateMachine;
+
+        public virtual void OnEnter(PlayerStateMachine stateMachine)
+        {
+            m_stateMachine = stateMachine;
+        }
+        public abstract void OnUpdate(float deltaTime);
+        public abstract void OnExit();
     }
-    public abstract void OnUpdate(float deltaTime);
-    public abstract void OnExit();
 }
 

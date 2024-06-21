@@ -1,60 +1,63 @@
 using System;
 using System.Collections.Generic;
 
-public class ClearableEvent
+namespace InexperiencedDeveloper.Dialogue.Samples
 {
-    protected List<Action> m_eventListeners = new List<Action>();
-
-    public void Subscribe(bool shouldSubscribe, Action action)
+    public class ClearableEvent
     {
-        if(!shouldSubscribe)
+        protected List<Action> m_eventListeners = new List<Action>();
+
+        public void Subscribe(bool shouldSubscribe, Action action)
         {
-            m_eventListeners.Remove(action);
-            return;
+            if(!shouldSubscribe)
+            {
+                m_eventListeners.Remove(action);
+                return;
+            }
+
+            m_eventListeners.Add(action);
         }
 
-        m_eventListeners.Add(action);
-    }
-
-    public void Invoke()
-    {
-        foreach(Action listener in m_eventListeners)
+        public void Invoke()
         {
-            listener?.Invoke();
-        }
-    }
-
-    public void ClearAllListeners()
-    {
-        m_eventListeners.Clear();
-    }
-}
-
-public class ClearableEventOneParam<T>
-{
-    protected List<Action<T>> m_eventListeners = new List<Action<T>>();
-
-    public void Subscribe(bool shouldSubscribe, Action<T> action)
-    {
-        if (!shouldSubscribe)
-        {
-            m_eventListeners.Remove(action);
-            return;
+            foreach(Action listener in m_eventListeners)
+            {
+                listener?.Invoke();
+            }
         }
 
-        m_eventListeners.Add(action);
-    }
-
-    public void Invoke(T param)
-    {
-        foreach (Action<T> listener in m_eventListeners)
+        public void ClearAllListeners()
         {
-            listener?.Invoke(param);
+            m_eventListeners.Clear();
         }
     }
 
-    public void ClearAllListeners()
+    public class ClearableEventOneParam<T>
     {
-        m_eventListeners.Clear();
+        protected List<Action<T>> m_eventListeners = new List<Action<T>>();
+
+        public void Subscribe(bool shouldSubscribe, Action<T> action)
+        {
+            if (!shouldSubscribe)
+            {
+                m_eventListeners.Remove(action);
+                return;
+            }
+
+            m_eventListeners.Add(action);
+        }
+
+        public void Invoke(T param)
+        {
+            foreach (Action<T> listener in m_eventListeners)
+            {
+                listener?.Invoke(param);
+            }
+        }
+
+        public void ClearAllListeners()
+        {
+            m_eventListeners.Clear();
+        }
     }
 }

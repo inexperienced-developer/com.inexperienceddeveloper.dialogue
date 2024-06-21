@@ -1,54 +1,57 @@
 using TMPro;
 using UnityEngine;
 
-public class InteractUI : MonoBehaviour
-{
-    [SerializeField] private TMP_Text m_interactionTypeText;
-    [SerializeField] private TMP_Text m_interactableText;
-
-    private void Start()
+namespace InexperiencedDeveloper.Dialogue.Samples
+{ 
+    public class InteractUI : MonoBehaviour
     {
-        PlayerInteractor.CanInteract += OnCanInteract;
-        PlayerInteractor.Interaction += OnInteract;
-        PlayerInteractor.EndInteraction += OnEndInteract;
-        gameObject.SetActive(false);
-    }
+        [SerializeField] private TMP_Text m_interactionTypeText;
+        [SerializeField] private TMP_Text m_interactableText;
 
-    private void OnDestroy()
-    {
-        PlayerInteractor.CanInteract -= OnCanInteract;
-        PlayerInteractor.Interaction -= OnInteract;
-        PlayerInteractor.EndInteraction -= OnEndInteract;
-    }
-
-
-    private void OnCanInteract(IInteractable interactable)
-    {
-        if (interactable == null) gameObject.SetActive(false);
-        else
+        private void Start()
         {
-            m_interactionTypeText.SetText(GetTypeInteraction(interactable));
-            m_interactableText.SetText(interactable.transform.gameObject.name);
+            PlayerInteractor.CanInteract += OnCanInteract;
+            PlayerInteractor.Interaction += OnInteract;
+            PlayerInteractor.EndInteraction += OnEndInteract;
+            gameObject.SetActive(false);
+        }
+
+        private void OnDestroy()
+        {
+            PlayerInteractor.CanInteract -= OnCanInteract;
+            PlayerInteractor.Interaction -= OnInteract;
+            PlayerInteractor.EndInteraction -= OnEndInteract;
+        }
+
+
+        private void OnCanInteract(IInteractable interactable)
+        {
+            if (interactable == null) gameObject.SetActive(false);
+            else
+            {
+                m_interactionTypeText.SetText(GetTypeInteraction(interactable));
+                m_interactableText.SetText(interactable.transform.gameObject.name);
+                gameObject.SetActive(true);
+            }
+        }
+
+        private void OnInteract(IInteractable interactable, EActiveCamera cameraToTurnOn)
+        {
+            gameObject.SetActive(false);
+        }
+
+        private void OnEndInteract()
+        {
             gameObject.SetActive(true);
         }
-    }
 
-    private void OnInteract(IInteractable interactable, EActiveCamera cameraToTurnOn)
-    {
-        gameObject.SetActive(false);
-    }
-
-    private void OnEndInteract()
-    {
-        gameObject.SetActive(true);
-    }
-
-    private string GetTypeInteraction(IInteractable interactable)
-    {
-        return interactable switch
+        private string GetTypeInteraction(IInteractable interactable)
         {
-            NPC => "Talk",
-            _ => "Interact"
-        };
+            return interactable switch
+            {
+                NPC => "Talk",
+                _ => "Interact"
+            };
+        }
     }
 }

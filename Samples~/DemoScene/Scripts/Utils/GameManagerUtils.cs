@@ -1,11 +1,15 @@
 using UnityEngine;
 
-public static class GameManagerUtils
+namespace InexperiencedDeveloper.Dialogue.Samples 
 {
-    public static T AddManager<T>(Transform transform, string name) where T : MonoBehaviour
+    public static class GameManagerUtils
     {
-        GameObject go = new GameObject(name);
-        go.transform.SetParent(transform, false);
-        return go.AddComponent<T>();
+        public static T AddManager<T>(Transform transform, string name) where T : MonoBehaviour
+        {
+            GameObject go = new GameObject(name);
+            go.transform.SetParent(transform, false);
+            return go.AddComponent<T>();
+        }
     }
 }
+

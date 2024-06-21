@@ -1,12 +1,15 @@
 using UnityEngine;
 
-public interface IInteractable
+namespace InexperiencedDeveloper.Dialogue.Samples
 {
-    Transform transform { get; }
-    /// <summary>
-    /// Returns true if camera should focus on interactable or not
-    /// </summary>
-    /// <returns></returns>
-    bool Interact();
+    public interface IInteractable
+    {
+        Transform transform { get; }
+        /// <summary>
+        /// Returns true if camera should focus on interactable or not
+        /// </summary>
+        /// <returns></returns>
+        bool Interact();
+    }
 }
 

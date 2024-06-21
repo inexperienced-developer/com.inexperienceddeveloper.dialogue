@@ -1,20 +1,23 @@
 
-public class PlayerManager : BaseManager
+namespace InexperiencedDeveloper.Dialogue.Samples
 {
-    public Player Player { get; private set; }
-
-    public override void Init()
+    public class PlayerManager : BaseManager
     {
-        // TODO: Fix this for now let's just find the player
-        Player = FindObjectOfType<Player>();
-    }
+        public Player Player { get; private set; }
 
-    public override void CleanUp()
-    {
-    }
+        public override void Init()
+        {
+            // TODO: Fix this for now let's just find the player
+            Player = FindObjectOfType<Player>();
+        }
 
-    public override void Restart()
-    {
+        public override void CleanUp()
+        {
+        }
+
+        public override void Restart()
+        {
+        }
     }
 }
 

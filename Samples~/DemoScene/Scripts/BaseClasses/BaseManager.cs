@@ -1,8 +1,11 @@
 using UnityEngine;
 
-public abstract class BaseManager : MonoBehaviour
+namespace InexperiencedDeveloper.Dialogue.Samples
 {
-    public abstract void Init();
-    public abstract void CleanUp();
-    public abstract void Restart();
+    public abstract class BaseManager : MonoBehaviour
+    {
+        public abstract void Init();
+        public abstract void CleanUp();
+        public abstract void Restart();
+    }
 }
