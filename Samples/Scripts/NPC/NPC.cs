@@ -1,55 +1,53 @@
+using InexperiencedDeveloper.Dialogue;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace InexperiencedDeveloper.Dialogue.Sample
+public class NPC : MonoBehaviour, IInteractable
 {
-    public class NPC : MonoBehaviour, IInteractable
+    [SerializeField] private NPCSO m_data;
+    public NPCSO Data => m_data;
+
+    [SerializeField] private UnityEvent[] m_events;
+
+    private void Awake()
     {
-        [SerializeField] private NPCSO m_data;
-        public NPCSO Data => m_data;
+        gameObject.name = m_data.Name;
+        PlayerInteractor.EndInteraction += OnEndInteract;
+    }
 
-        [SerializeField] private UnityEvent[] m_events;
+    private void OnDestroy()
+    {
+        PlayerInteractor.EndInteraction -= OnEndInteract;
+    }
 
-        private void Awake()
-        {
-            gameObject.name = m_data.Name;
-            PlayerInteractor.EndInteraction += OnEndInteract;
-        }
+    public bool Interact()
+    {
+        return false;
+    }
 
-        private void OnDestroy()
-        {
-            PlayerInteractor.EndInteraction -= OnEndInteract;
-        }
+    private void OnEndInteract()
+    {
+    }
 
-        public bool Interact()
-        {
-            return false;
-        }
+    public DialogueContainerSO GetCurrentNPCDialogue()
+    {
+        DialogueContainerSO dialogue = m_data.FirstTimeLines;
+        return dialogue;
+    }
 
-        private void OnEndInteract()
-        {
-        }
+    public void ThrowEvent(int index)
+    {
+        m_events[index]?.Invoke();
+    }
 
-        public DialogueContainerSO GetCurrentNPCDialogue()
-        {
-            DialogueContainerSO dialogue = m_data.FirstTimeLines;
-            return dialogue;
-        }
+    public string GetName()
+    {
+        return m_data.Name;
+    }
 
-        public void ThrowEvent(int index)
-        {
-            m_events[index]?.Invoke();
-        }
-
-        public string GetName()
-        {
-            return m_data.Name;
-        }
-
-        public void DemoEvent()
-        {
-            Debug.Log("Event thrown!");
-        }
+    public void DemoEvent()
+    {
+        Debug.Log("Event thrown!");
     }
 }
 

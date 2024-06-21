@@ -1,21 +1,18 @@
 using UnityEngine;
 
-namespace InexperiencedDeveloper.Dialogue.Sample
+public class Player : MonoBehaviour
 {
-    public class Player : MonoBehaviour
+    public PlayerStateMachine StateMachine { get; private set; }
+    public PlayerInteractor Interactor { get; private set; }
+    public PlayerCameraManager CameraManager { get; private set; }
+
+    private void Awake()
     {
-        public PlayerStateMachine StateMachine { get; private set; }
-        public PlayerInteractor Interactor { get; private set; }
-        public PlayerCameraManager CameraManager { get; private set; }
+        StateMachine = GetComponent<PlayerStateMachine>();
+        Interactor = GetComponent<PlayerInteractor>();
+        CameraManager = GetComponent<PlayerCameraManager>();
 
-        private void Awake()
-        {
-            StateMachine = GetComponent<PlayerStateMachine>();
-            Interactor = GetComponent<PlayerInteractor>();
-            CameraManager = GetComponent<PlayerCameraManager>();
-
-            Interactor?.Init(this);
-        }
+        Interactor?.Init(this);
     }
 }
 

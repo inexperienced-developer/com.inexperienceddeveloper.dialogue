@@ -1,26 +1,23 @@
 using System;
 using UnityEngine;
 
-namespace InexperiencedDeveloper.Dialogue.Sample
+[Serializable]
+public class InteractState : BasePlayerState
 {
-    [Serializable]
-    public class InteractState : BasePlayerState
+    public override void OnEnter(PlayerStateMachine stateMachine)
     {
-        public override void OnEnter(PlayerStateMachine stateMachine)
-        {
-            base.OnEnter(stateMachine);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
-        }
+        base.OnEnter(stateMachine);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
 
-        public override void OnExit()
-        {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
+    public override void OnExit()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 
-        public override void OnUpdate(float deltaTime)
-        {
-        }
+    public override void OnUpdate(float deltaTime)
+    {
     }
 }
